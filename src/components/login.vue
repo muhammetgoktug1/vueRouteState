@@ -1,6 +1,6 @@
 <template>
     <div>
-        <b-modal id="modal-1" title="Login" hide-footer ref="my-modal">
+        <b-modal id="modal-1" :title="getDummyLoginText.loginText" hide-footer ref="my-modal">
             <b-form-group label-cols="12" label-cols-lg="12" label="Title" label-for="input-default">
                 <b-form-input id="input-default" v-model="title"></b-form-input>
             </b-form-group>
@@ -42,10 +42,10 @@
             this.langue = this.$store.getters.getLangue
         },
         computed:{
-            ...mapGetters(["getTitle","getName","getEmail","getPassword","getCountryList"])
+            ...mapGetters(["getTitle","getName","getEmail","getPassword","getCountryList","getDummyLoginText"])
         },
         methods:{
-            ...mapMutations(["setTitle","setName","setEmail","setPassword","setIsLogin","setDummyText","setLang"]),
+            ...mapMutations(["setTitle","setName","setEmail","setPassword","setIsLogin","setDummyText","setLang","setDummyLoginText"]),
             langChange(name){
                 this.setLang(name)
                 axios.get("./data/dummyText.json")
@@ -53,6 +53,7 @@
                     response.data.map((e) => {
                         if(e.langId == this.$store.getters.getLangue){
                             this.setDummyText(e)
+                            this.setDummyLoginText(e)
                         }
                     })
                 })
@@ -73,7 +74,3 @@
         }
     }
 </script>
-
-<style>
-
-</style>

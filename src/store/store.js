@@ -9,15 +9,11 @@ export const store = new Vuex.Store({
         isLogin:false,
         lang:"TR",
         dummyText:{},
+        dummyMenu:[],
+        loginText:{},
         countryList:[
             { id: "TR", name: "Turkey" },
-            { id: "US", name: "United States of America" },
-            { id: "GB", name: "United Kingdom" },
-            { id: "DE", name: "Germany" },
-            { id: "SE", name: "Sweden" },
-            { id: "KE", name: "Kenya" },
-            { id: "BR", name: "Brazil" },
-            { id: "ZW", name: "Zimbabwe" }
+            { id: "US", name: "United States of America" }
         ],
         title:"",
         name:"",
@@ -36,6 +32,12 @@ export const store = new Vuex.Store({
         },
         getDummyText(state){
             return state.dummyText
+        },
+        getDummyLoginText(state){
+            return state.loginText
+        },
+        getDummyMenu(state, value){
+            state.dummyMenu = value
         },
         getTitle(state){
             return state.title
@@ -59,6 +61,12 @@ export const store = new Vuex.Store({
         },
         setDummyText(state, value){
             state.dummyText = value
+        },
+        setDummyLoginText(state, value){
+            state.loginText = value
+        },
+        setDummyMenu(state, value){
+            state.dummyMenu = value
         },
         setTitle(state, value){
             state.title = value
