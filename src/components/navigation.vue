@@ -1,14 +1,14 @@
 <template>
     <div>
         <b-navbar toggleable="lg" type="dark" variant="info">
-            <b-navbar-brand to="/">Burası Logo Olacak</b-navbar-brand>
+            <b-navbar-brand>{{getActivePage}}</b-navbar-brand>
             <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
             <b-collapse id="nav-collapse" is-nav>
                 <b-navbar-nav v-for="items in getDummyMenu" :key="items.name">
                     <b-nav-item :to="items.root">{{items.name}}</b-nav-item>
                 </b-navbar-nav>
                 <b-navbar-nav class="ml-auto">
-                    <select class="form-control" v-model="getLangue" @change="langChange">
+                    <select class="form-control" v-bind:value="getLangue" @change="langChange">
                         <option v-for="items in getCountryList" :key="items.id" :value="items.id"> {{items.name}} </option>
                     </select>
                     <div class="ml-1">
@@ -55,7 +55,7 @@
             })
         },
         computed:{
-            ...mapGetters(["getCountryList","getIsLogin","getEmail","getTitle","getLangue","getDummyMenu","getDummyLoginText"])
+            ...mapGetters(["getCountryList","getIsLogin","getEmail","getTitle","getLangue","getDummyMenu","getDummyLoginText","getActivePage"])
         },
         methods:{
             ...mapMutations(["setLang","setDummyText","setTitle","setName","setEmail","setPassword","setIsLogin","setDummyMenu","setDummyLoginText"]),
@@ -65,7 +65,6 @@
                 .then(response =>{
                     response.data.map((e) => {
                         if(e.langId == this.$store.getters.getLangue){
-                            console.log(e.menu)
                             this.setDummyText(e)
                             this.setDummyMenu(e.menu)
                             this.setDummyLoginText(e)

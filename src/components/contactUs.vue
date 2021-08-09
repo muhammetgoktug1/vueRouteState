@@ -40,6 +40,7 @@
 
 <script>
     import {mapGetters} from 'vuex'
+    import {mapMutations} from 'vuex'
     export default {
         name:"contact",
         data(){
@@ -60,8 +61,17 @@
 
         },
         methods:{
+            ...mapMutations(["setActivePage"]),
             send(){
                 console.log(this.title,'\n',this.name,'\n',this.phone,'\n',this.email,'\n',this.message,'\n',this.langue)
+            }
+        },
+        created(){
+            if(this.$store.getters.getLangue == "TR"){
+                this.setActivePage("İletişim")
+            }
+            else{
+                this.setActivePage("Contact")
             }
         }
     }

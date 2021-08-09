@@ -11,6 +11,7 @@ export const store = new Vuex.Store({
         dummyText:{},
         dummyMenu:[],
         loginText:{},
+        activePage:"",
         countryList:[
             { id: "TR", name: "Turkey" },
             { id: "US", name: "United States of America" }
@@ -36,8 +37,8 @@ export const store = new Vuex.Store({
         getDummyLoginText(state){
             return state.loginText
         },
-        getDummyMenu(state, value){
-            state.dummyMenu = value
+        getDummyMenu(state){
+            return state.dummyMenu
         },
         getTitle(state){
             return state.title
@@ -50,6 +51,9 @@ export const store = new Vuex.Store({
         },
         getPassword(state){
             return state.password
+        },
+        getActivePage(state){
+            return state.activePage
         }
     },
     mutations:{
@@ -80,5 +84,9 @@ export const store = new Vuex.Store({
         setPassword(state, value){
             state.password = value
         },
+        setActivePage(state, value){
+            state.activePage = value
+        }
+        
     }
 });

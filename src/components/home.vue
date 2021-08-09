@@ -20,9 +20,15 @@
                     }
                 })
             })
+            if(this.$store.getters.getLangue == "TR"){
+                this.setActivePage("Anasayfa")
+            }
+            else{
+                this.setActivePage("Home")
+            }
         },
         methods:{
-            ...mapMutations(["setDummyText"])
+            ...mapMutations(["setDummyText","setActivePage"])
         },
         computed:{
             ...mapGetters(["getDummyText"])
